@@ -3,6 +3,7 @@
 (provide read-thoughts
          thoughts->pict
          in-thoughts
+         thoughts->digraph-data
          (struct-out exn:fail:mind-map:indent))
 
 (require racket/format

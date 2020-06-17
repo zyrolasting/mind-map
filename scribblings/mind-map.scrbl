@@ -1,6 +1,8 @@
 #lang scribble/manual
 @require[@for-label[mind-map
-                    racket/base]
+                    racket/base
+                    racket/contract
+                    racket/sequence]
                     racket/runtime-path]
 
 @title{Creating Mind Maps in Racket}
@@ -101,6 +103,38 @@ An element of the edge list is a pair of vertex IDs, such that the
 
 @defproc[(thoughts->pict [thoughts list?]) pict?]{
 Renders thoughts as a @racket[pict].
+}
+
+
+@defproc[(in-thoughts [thoughts list?]) sequence?]{
+Returns a 4-value sequence built from lazily traversing
+@racket[thoughts].
+
+The values are as follows:
+
+@itemlist[#:style 'ordered
+@item{The vertex ID (see @racket[thoughts->digraph-data]) of a vertex, or @racket[#f].}
+@item{The string label of the vertex identified by value 1. If the first value is @racket[#f], then this value is also @racket[#f].}
+@item{The vertex ID of another vertex. Never @racket[#f].}
+@item{The string label of the vertex identified by value 3.}]
+
+You interpret these values as a directed edge with vertex labels.  The
+vertex identified by the first value points to the vertex identified
+by the third value. If the first two values are @racket[#f], that
+means no edges point to the vertex identified by the third value.
+
+
+@racketinput[(sequence->list (in-values-sequence (in-thoughts thoughts)))]
+@racketresult[
+'((#f #f 0 "Machine Learning")
+            (0 "Machine Learning" 1 "To Evaluate")
+            (1 "To Evaluate" 2 "ELKI")
+            (1 "To Evaluate" 3 "TensorFlow")
+            (3 "TensorFlow" 4 "https://www.tensorflow.org")
+            (0 "Machine Learning" 5 "Desired approaches")
+            (5 "Desired approaches" 6 "Supervised")
+            (5 "Desired approaches" 7 "Reinforcement"))]
+
 }
 
 @defstruct*[(exn:fail:mind-map:indent exn:fail) ([lineno exact-nonnegative-integer?])]{
