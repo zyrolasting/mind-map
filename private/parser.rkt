@@ -10,9 +10,11 @@
       (cons (plant-idea (car tree) (sub1 level) line) (cdr tree))))
 
 (define (parse-mind-map in)
+  (port-count-lines! in)
   (define get-next (make-lexer))
   (define reversed-parse-tree
     (let loop ([tree null])
+      (define-values (lineno colno pos) (port-next-location in))
       (define line (read-line in))
       (cond
         [(eof-object? line) tree]
@@ -20,7 +22,7 @@
              (regexp-match? #px"^\\s*$" line))
          (loop tree)]
         [else
-          (let-values ([(level trimmed-line) (get-next line)])
+          (let-values ([(level trimmed-line) (get-next line lineno)])
             (loop (plant-idea tree level trimmed-line)))])))
   (reverse/recursive reversed-parse-tree))
 

@@ -26,12 +26,10 @@ as summarized here: https://stackoverflow.com/a/25471702/394397
 (define (make-lexer)
   (define stack (list (ws-stats 0 0)))
   (define level 0)
-  (define lineno 1)
-  (λ (line)
+  (λ (line lineno)
     (define-values (next-stack next-level) (find-indentation-level stack level line lineno))
     (set! stack next-stack)
     (set! level next-level)
-    (set! lineno (add1 lineno))
     (values next-level (string-trim line))))
 
 (define (find-indentation-level stack level line lineno)
