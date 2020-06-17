@@ -137,8 +137,9 @@ means no edges point to the vertex identified by the third value.
 
 }
 
-@defstruct*[(exn:fail:mind-map:indent exn:fail) ([lineno exact-nonnegative-integer?])]{
+@defstruct*[(exn:fail:mind-map:indent exn:fail) ([lineno exact-positive-integer?])]{
 Informs the user of a line with an invalid leading sequence of tabs or spaces.
+@racket[lineno] is one-based.
 
 Consider the following document, where @litchar{>} represents a tab.
 
