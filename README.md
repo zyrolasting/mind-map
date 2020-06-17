@@ -17,4 +17,4 @@ Machine Learning
     Reinforcement
 ```
 
-[![A rendering of the example above](scribblings/rendered-pict.png)]
+![A rendering of the example above](scribblings/rendered-pict.png)
