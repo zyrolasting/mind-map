@@ -74,6 +74,9 @@ a parse tree of notes.
 Any trailing or leading whitespace is trimmed from a line.
 
 This assumes there is no leading @litchar{#lang} line.
+
+If a line has an indentation error, @racket[read-thoughts] will raise
+@racket[exn:fail:mind-map:indent].
 }
 
 @defproc[(thoughts->digraph-data [thoughts list?]) (values list? list?)]{
@@ -138,7 +141,10 @@ means no edges point to the vertex identified by the third value.
 }
 
 @defstruct*[(exn:fail:mind-map:indent exn:fail) ([lineno exact-positive-integer?])]{
-Informs the user of a line with an invalid leading sequence of tabs or spaces.
+
+@racket[read-thoughts] raises this exception for lines led by an
+invalid sequence of tabs or spaces.
+
 @racket[lineno] is one-based.
 
 Consider the following document, where @litchar{>} represents a tab.
