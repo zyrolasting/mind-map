@@ -16,7 +16,7 @@ is an idea. Each idea may be indented to illustrate a composition of
 ideas.
 
 @verbatim[#:indent 4]|{
-Machine Learning (ML)
+Machine Learning
   To Evaluate
     ELKI
     TensorFlow
@@ -30,7 +30,7 @@ Machine Learning (ML)
 This is deliberate, because this format is not meant for writing
 complete sentences or paragraphs.}
 Here, @litchar{To Evaluate} and @litchar{Desired approaches} belong to
-the @litchar{Machine Learning (ML)} idea. Although the example suggests
+the @litchar{Machine Learning} idea. Although the example suggests
 otherwise, you can have more than one top-level idea in a document.
 
 A line supports a leading mix of tabs and spaces, but an indentation
@@ -51,7 +51,7 @@ list. That list represents the parse tree of a mind map.
 @racketinput[(require "example.rkt")]
 @racketinput[thoughts]
 @racketresult[
-'(("Machine Learning (ML)"
+'(("Machine Learning"
                 ("To Evaluate"
                  ("ELKI")
                  ("TensorFlow" ("https://www.tensorflow.org")))
