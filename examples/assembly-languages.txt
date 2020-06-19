@@ -1,0 +1,23 @@
+Assembly languages
+  Exes use hardware thru kernel
+    System calls
+      1. Suspends my program
+      2. Drivers do work
+      3. Resumes my program
+  ; this is a comment
+  split into sections
+    .data: declare constant data
+    .bss: declare variables
+    .text: code
+      global label: set entry point
+  statements
+    executable instructions
+      "[label] mnemonic [operands] [;comment]"
+      has opcode
+      makes one machine language instruction
+    directives
+      a.k.a pseudo-ops
+      don't generate machine language instructions
+      use for assembler configuration
+    macros
+      text substitution, like a C macro
