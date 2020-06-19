@@ -1,6 +1,6 @@
 #lang info
 (define collection "mind-map")
-(define deps '("base" "graphviz"))
+(define deps '("base" "racket-graphviz"))
 (define build-deps '("scribble-lib" "racket-doc" "rackunit-lib"))
 (define scribblings '(("scribblings/mind-map.scrbl" ())))
 (define pkg-desc "Write and render mind maps in Racket")
