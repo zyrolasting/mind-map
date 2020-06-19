@@ -6,3 +6,5 @@
 (define pkg-desc "Write and render mind maps in Racket")
 (define version "0.0")
 (define pkg-authors '(sage))
+(define raco-commands
+  '(("mind-map" (submod mind-map/cli main) "Build mind maps" #f)))

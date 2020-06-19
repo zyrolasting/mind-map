@@ -77,10 +77,3 @@
           (require mind-map)
           (provide thoughts)
           (define thoughts 'parse-tree)))))
-
-(module+ main
-  (require racket/cmdline)
-  (command-line
-    #:program "mind-map"
-    #:args mind-maps
-    (displayln mind-maps)))

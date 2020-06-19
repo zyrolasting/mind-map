@@ -3,7 +3,8 @@
                     racket/base
                     racket/contract
                     racket/sequence]
-                    racket/runtime-path]
+                    racket/runtime-path
+                    mind-map/cli]
 
 @title{Creating Mind Maps in Racket}
 @author{Sage Gerard}
@@ -163,6 +164,34 @@ with the same leading whitespace.
 The indentation error can be fixed by replacing the tab with a space,
 or by replacing one space with a tab in all indented lines.
 }
+
+@section{@tt{raco mind-map}}
+
+The @tt{mind-map} collection includes a @tt{raco} command of the same
+name. The command will parse text files given as command line
+arguments and save the rendered mind maps to SVG files.  Currently,
+any failure results in exit code 1.
+
+@verbatim|{$ raco mind-map path/to/mind-map.rkt path/to/notes.txt}|
+
+As implied in the above command line, the input files do not have to be
+Racket modules. If the file starts with @litchar{#lang mind-map}, then
+it will be loaded as a Racket module.  Otherwise it will be read as a
+plain text file using @racket[read-thoughts].
+
+By default, the command will render the SVG documents in a
+@tt[@DEFAULT-OUTPUT-DIRNAME] directory, relative to the command's working
+directory. You can override this directory with @litchar{--dest}.
+
+@verbatim|{$ raco mind-map --dest other-dir ...}|
+
+The command will not overwrite any files unless forced.  Set @litchar{-f}
+or @litchar{--force} to overwrite any conflicting files.
+
+By default, the command will print its activity on STDOUT. Use
+@litchar{--quiet} or @litchar{-q} to suppress STDOUT messages.
+
+Run @tt{raco mind-map -h} to review these options.
 
 
 @section{Project Information}
